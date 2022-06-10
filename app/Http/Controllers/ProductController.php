@@ -30,15 +30,32 @@ class ProductController extends Controller
         }
     }
 
-    public function getAllProducts()
+    public function getAllProducts($search = "")
     {
         try {
-            $product = Product::all();
+            $productData = [];
+            if (is_null($search) || empty($search)) {
+                $product = Product::all();
+                if (!empty($product[0])) {
 
-            //Obtengo todos los productos, armo la colección y realizo la paginación
-            $productData = (new ProductCollection($product))->paginate(5);
+                    //Obtengo todos los productos, armo la colección y realizo la paginación
+                    $productData = (new ProductCollection($product))->paginate(5);
+                }
+            } else {
+                $product = Product::where('name', 'like', '%' . $search . '%')->get();
 
-            return response()->json(['code' => '000', 'message' => '', 'data' => $productData], 201);
+                //Obtengo los productos que coincidan con ese nombre, armo la colección y realizo la paginación
+                if (!empty($product[0])) {
+                    //Obtengo todos los productos, armo la colección y realizo la paginación
+                    $productData = (new ProductCollection($product))->paginate(5);
+                }
+            }
+
+            if (!empty($productData)) {
+                return response()->json(['code' => '000', 'message' => '', 'data' => $productData], 201);
+            } else {
+                return response()->json(['code' => '001', 'message' => 'Producto no encontrado'], 401);
+            }
         } catch (Exception $e) {
             return response()->json(['code' => '002', 'message' => 'Error. Contacte con el administrador'], 500);
         }
