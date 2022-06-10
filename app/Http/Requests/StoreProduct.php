@@ -47,6 +47,7 @@ class StoreProduct extends FormRequest
             'description.max' => 'El nombre es demasiado largo',
             'image.required' => 'Debe ingresar una imagen para el producto',
             'image.mimes' => 'El formato de la imagen es incorrecto',
+            'image.image' => 'Debe enviar una imagen',
             'price.required' => 'Debe ingresar un precio para el producto',
             'price_sale.required' => 'Debe ingresar un precio de venta para el producto',
             'category_id.required' => 'Debe ingresar una categoria para el producto',
