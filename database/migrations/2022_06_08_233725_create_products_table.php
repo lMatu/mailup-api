@@ -17,10 +17,9 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->string('name', 255);
             $table->string('description', 255)->nullable();
-            $table->string('image', 255)->nullable();
-          //$table->foreignId('brand_id');
+            $table->string('image', 255);
             $table->float('price', 10, 2);
-            $table->float('price_sale', 10, 2)->nullable();
+            $table->float('price_sale', 10, 2);
             $table->foreignId('category_id');
             $table->integer('stock');
             $table->softDeletes();

@@ -15,7 +15,7 @@ class ProductSeeder extends Seeder
     public function run()
     {
         $product_1 = Product::create([
-            'name' => 'MacBook Pro 13.3" Retina [MYD82] M1 Chip 256 GB - Space Gray',
+            'name' => 'MacBook Pro 13.3 Retina [MYD82] M1 Chip 256 GB - Space Gray',
             'image' => 'macbook.jpg',
             'price' => 217000.55,
             'price_sale' => 200000.55,
